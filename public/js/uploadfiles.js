@@ -3,7 +3,7 @@ var acceptedFileType = ".jpg, .jpeg, .png, .tif, .tiff, .psd";
 var imageCount = 0;
 var imageUploadInfos =[];
 $(document).ready(function(){
-    caltotalpay();
+    //caltotalpay();
     $("div#myId").dropzone({
         url:"https://" + $('#s3bucketnameid').val() + ".s3.amazonaws.com/",
         dictDefaultMessage: "<b>Suelta tus archivos aquí</b><br> <p class='texto_plano'> (o haz click)<p>",

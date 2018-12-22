@@ -20,6 +20,10 @@ class Stuff extends Component {
       </div>
     );
   }
+
+  componentWillUnmount(){
+    alert("Se cambió de componente");
+  }
 }
  
 export default Stuff;
