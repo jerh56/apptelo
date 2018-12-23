@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
-import {
-  NavLink
-} from "react-router-dom";
 const $ = window.$; // esta línea permite que Jquery funcione
 
 
 // Contact component render contact form
-class Signin extends Component {
+class ForgotPass extends Component {
   constructor(props){
     super(props);
     this.state = {
-      contactEmail: '',
-      contactPass: ''
+      contactEmail: ''
     };
 
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleChangeEmail = this._handleChangeEmail.bind(this);
-    this._handleChangePass = this._handleChangePass.bind(this);
-    this._handlePushSignup = this._handlePushSignup.bind(this);
-   }
+  }
 
   // Change state of input field so text is updated while typing
   _handleChangeEmail(e) {
@@ -26,39 +20,25 @@ class Signin extends Component {
       contactEmail: e.target.value,
     });
   }
-  // Change state of input field so text is updated while typing
-  _handleChangePass(e) {
-    this.setState({
-      contactPass: e.target.value
-    });
-  }
-
-  // When push Signup Link
-  _handlePushSignup(e) {
-    this.props.history.push("/signin");
-  }
-
+  
   _handleSubmit(e) {
     e.preventDefault();
     this.setState({
       contactEmail: '',
-      contactPass: ''
-    });
+  });
 
-    $.ajax({
-      url: process.env.NODE_ENV !== "production" ? 'https://apptd.herokuapp.com/auth/signin' : "https://apptd.herokuapp.com/auth/signin",
+  $.ajax({
+      //url: process.env.NODE_ENV !== "production" ? 'https://apptd.herokuapp.com/auth/forgotpass' : "https://apptd.herokuapp.com/auth/forgotpass",
       type: 'POST',
       data: {
-        'email': this.state.contactEmail,
-        'password': this.state.contactPass
+        'email': this.state.contactEmail
       },
       cache: false,
       success: function(data) {
         // Success..
         // TODO: Navigate next page or homepage
         this.setState({
-          contactEmail: 'success',
-          contactPass: ''
+          contactEmail: 'success'
         });
         //$('#formContact').slideUp();
         //$('#formContact').after(this.state.contactPass);
@@ -78,21 +58,15 @@ class Signin extends Component {
     });
   }
 
-
-
   render() {
     return (
       <div className="contact" id="contact">
         <div className="filter">
-          <h2>Inicia sesión</h2>
-          <form className="form" onSubmit={this._handleSubmit} id="formContact">  
+        <h2>Recupera tu contraseña</h2>
+          <form className="form" onSubmit={this._handleSubmit} id="formContact">
             <label>Correo Electrónico:</label>
             <input id="formEmail" type="email" name="formEmail" value={this.state.contactEmail} onChange={this._handleChangeEmail} required/>
-            <label>Contraseña:</label>
-            <input type="password" id="formPass" name="formPass" value={this.state.contactPass} onChange={this._handleChangePass} required></input>
-            <p><input type="submit" value="Iniciar Sesión" className="btn--cta" id="btn-submit" /></p>
-            <p><NavLink to="/signup">Crea una cuenta</NavLink></p>
-            <p><NavLink to="/forgotpass">Olvidé mi contraseña</NavLink></p>
+            <p><input type="submit" value="Enviar correo" className="btn--cta" id="btn-submit" /></p>
           </form>
         </div>
       </div>
@@ -100,4 +74,4 @@ class Signin extends Component {
   }
 }
 
-export default Signin;
+export default ForgotPass;

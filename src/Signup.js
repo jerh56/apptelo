@@ -93,19 +93,18 @@ class Signup extends Component {
     return (
       <div className="contact" id="contact">
         <div className="filter">
+          <h2>Completa tus datos</h2>
           <form className="form" onSubmit={this._handleSubmit} id="formContact">
-          <label>Nombre:</label>
-          <input id="formName" type="text" name="formName" value={this.state.contactName} onChange={this._handleChangeName} required/>
-          <label>Apellido:</label>
-          <input id="formLastName" type="text" name="formLastName" value={this.state.contactLastName} onChange={this._handleChangeLastName} required/>
-          
-            
-            
+            <label>Nombre:</label>
+            <input id="formName" type="text" name="formName" value={this.state.contactName} onChange={this._handleChangeName} required/>
+            <label>Apellido:</label>
+            <input id="formLastName" type="text" name="formLastName" value={this.state.contactLastName} onChange={this._handleChangeLastName} required/>
+            <p></p>
             <label>Correo Electrónico:</label>
             <input id="formEmail" type="email" name="formEmail" value={this.state.contactEmail} onChange={this._handleChange} required/>
             <label>Contraseña:</label>
             <input type="password" id="formPass" name="formPass" value={this.state.contactPass} onChange={this._handleChangePass} required></input>
-            <input type="submit" value="Crear Cuenta" className="btn--cta" id="btn-submit" />
+            <p><input type="submit" value="Crear Cuenta" className="btn--cta" id="btn-submit" /></p>
           </form>
         </div>
       </div>

@@ -7,7 +7,8 @@ import {
 import Home from "./Home";
 import Signup from "./Signup";
 import Signin from "./Signin";
- 
+import ForgotPass from "./ForgotPass";
+
 class Main extends Component {
     render() {
       return (
@@ -23,6 +24,7 @@ class Main extends Component {
               <Route exact path="/" component={Home}/>
               <Route path="/signup" component={Signup}/>
               <Route path="/signin" component={Signin}/>
+              <Route path="/forgotpass" component={ForgotPass}/>
             </div>
           </div>
         </HashRouter>
