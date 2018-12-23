@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
+import {
+  Route,
+  NavLink,
+  HashRouter
+} from "react-router-dom";
 const $ = window.$; // esta línea permite que Jquery funcione
 
 
 // Contact component render contact form
-class Contact extends Component {
+class Signin extends Component {
   constructor(props){
     super(props);
     this.state = {
       contactEmail: '',
-      contactPass: '',
-      contactName: '',
-      contactLastName: ''
+      contactPass: ''
     };
 
     this._handleSubmit = this._handleSubmit.bind(this);
-    this._handleChange = this._handleChange.bind(this);
+    this._handleChangeEmail = this._handleChangeEmail.bind(this);
     this._handleChangePass = this._handleChangePass.bind(this);
-    this._handleChangeName = this._handleChangeName.bind(this);
-    this._handleChangeLastName = this._handleChangeLastName.bind(this);
-  }
+   }
 
   // Change state of input field so text is updated while typing
-  _handleChange(e) {
+  _handleChangeEmail(e) {
     this.setState({
       contactEmail: e.target.value,
     });
@@ -33,35 +34,19 @@ class Contact extends Component {
     });
   }
 
-  _handleChangeName(e) {
-    this.setState({
-      contactName: e.target.value
-    });
-  }
-
-  _handleChangeLastName(e) {
-    this.setState({
-      contactLastName: e.target.value
-    });
-  }
-
   _handleSubmit(e) {
     e.preventDefault();
     this.setState({
       contactEmail: '',
-      contactPass: '',
-      contactName: '',
-      contactLastName: ''
+      contactPass: ''
     });
 
     $.ajax({
-      url: process.env.NODE_ENV !== "production" ? 'https://apptd.herokuapp.com/auth/signup' : "https://apptd.com/auth/signup",
+      url: process.env.NODE_ENV !== "production" ? 'https://apptd.herokuapp.com/auth/signin' : "https://apptd.herokuapp.com/auth/signin",
       type: 'POST',
       data: {
         'email': this.state.contactEmail,
-        'password': this.state.contactPass,
-        'name': this.state.contactName,
-        'lastname': this.state.contactLastName
+        'password': this.state.contactPass
       },
       cache: false,
       success: function(data) {
@@ -93,19 +78,13 @@ class Contact extends Component {
     return (
       <div className="contact" id="contact">
         <div className="filter">
-          <form className="form" onSubmit={this._handleSubmit} id="formContact">
-          <label>Nombre:</label>
-          <input id="formName" type="text" name="formName" value={this.state.contactName} onChange={this._handleChangeName} required/>
-          <label>Apellido:</label>
-          <input id="formLastName" type="text" name="formLastName" value={this.state.contactLastName} onChange={this._handleChangeLastName} required/>
-          
-            
-            
+          <form className="form" onSubmit={this._handleSubmit} id="formContact">  
             <label>Correo Electrónico:</label>
-            <input id="formEmail" type="email" name="formEmail" value={this.state.contactEmail} onChange={this._handleChange} required/>
+            <input id="formEmail" type="email" name="formEmail" value={this.state.contactEmail} onChange={this._handleChangeEmail} required/>
             <label>Contraseña:</label>
             <input type="password" id="formPass" name="formPass" value={this.state.contactPass} onChange={this._handleChangePass} required></input>
-            <input type="submit" value="Crear Cuenta" className="btn--cta" id="btn-submit" />
+            <input type="submit" value="Iniciar Sesión" className="btn--cta" id="btn-submit" />
+            <NavLink to="/Signin">Crer una cuenta</NavLink>
           </form>
         </div>
       </div>
@@ -113,4 +92,4 @@ class Contact extends Component {
   }
 }
 
-export default Contact;
+export default Signin;
